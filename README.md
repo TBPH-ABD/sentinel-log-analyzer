@@ -95,6 +95,23 @@ window across the sorted failure timestamps and reports the densest burst.
 Five failures spread over a day is a forgetful user; five failures in ninety
 seconds is an attack. The window and threshold are both tunable.
 
+## Tests
+
+40 tests, 95% line coverage. No dependencies. This tool makes no network
+calls, and the suite touches nothing outside a temporary directory — log
+fixtures and file trees are built and torn down per test.
+
+```bash
+# Run the suite
+python3 -m unittest discover -s tests -v
+
+# Fail on any leaked socket, file, or database connection
+python3 -W error::ResourceWarning -m unittest discover -s tests
+```
+
+CI runs the suite on Python 3.10–3.13 on every push, plus a coverage gate and a
+3.10 syntax check. See [.github/workflows/tests.yml](.github/workflows/tests.yml).
+
 ## License
 
 MIT — see [LICENSE](LICENSE).
