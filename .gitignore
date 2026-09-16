@@ -11,6 +11,8 @@ env/
 
 # Tool output / local data
 *.log
+# ...but the bundled demo logs are part of the repo, not runtime output.
+!samples/*.log
 *.db
 *.sqlite3
 output/
